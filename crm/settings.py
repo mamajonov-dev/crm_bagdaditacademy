@@ -27,7 +27,7 @@ DEBUG = True
 
 # ALLOWED_HOSTS = ['https://web-production-aa6bf.up.railway.app/', 'localhost:8000', "*"]
 ALLOWED_HOSTS = ['web-production-aa6bf.up.railway.app','localhost', '127.0.0.1', 'bagdad-it-academy.uz']
-
+CSRF_TRUSTED_ORIGINS = ['web-production-aa6bf.up.railway.app']
 # Application definition
 
 INSTALLED_APPS = [

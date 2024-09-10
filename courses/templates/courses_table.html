@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="content-page">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <div class="header-title">
+                            <h4 class="card-title">Editable Table</h4>
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+
+                        <div id="table" class="table-editable">
+                            <span class="table-add float-right mb-3 mr-2">
+                            <a href="{% url 'add_course' %}" class="btn btn-sm bg-primary">
+                                <i class="ri-add-fill"><span class="pl-1">Add New</span></i>
+                            </a>
+                            </span>
+                            <table class="table table-bordered table-responsive-md table-striped text-center">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Created</th>
+
+                                    <th>Sort</th>
+                                    <th>Remove</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for course in courses %}
+                                <tr>
+                                    <td contenteditable="true">{{course.name}}</td>
+                                    <td contenteditable="true">{{course.created}}</td>
+
+                                    <td>
+                                    <span class="table-up"><a href="#!" class="indigo-text"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="20px" height="20px"
+                                            viewBox="0 0 20 20" fill="blue">
+                                    <path fill-rule="evenodd"
+                                          d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"
+                                          clip-rule="evenodd"/>
+                                    </svg></a></span>
+                                        <span class="table-down"><a href="#!" class="indigo-text"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="20px" height="20px"
+                                                viewBox="0 0 20 20" fill="blue">
+                                    <path fill-rule="evenodd"
+                                          d="M14.707 12.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l2.293-2.293a1 1 0 011.414 0z"
+                                          clip-rule="evenodd"/>
+                                    </svg></a></span>
+                                    </td>
+                                    <td>
+                                    <span class="table-remove">
+                                        <a href="{% url 'delete_course' pk=course.id %}" type="button"
+                                           class="btn bg-danger-light btn-rounded btn-sm my-0">Remove</a>
+                                    </span>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="content-page">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <div class="header-title">
+                            <h4 class="card-title">Bootstrap Datatables</h4>
+                        </div>
+                        <span class="table-add float-right mb-3 mr-2">
+                        <a href="{% url 'add_group' %}" class="btn btn-sm bg-primary">
+                            <i class="ri-add-fill"><span class="pl-1">Add New Group</span></i>
+                        </a>
+                        </span>
+                    </div>
+                    <div class="card-body">
+
+
+                        <div class="table-responsive">
+                            <table id="datatable-1" class="table data-table table-striped table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Course</th>
+                                    <th>Office</th>
+                                    <th>Teacher</th>
+                                    <th>Amount</th>
+                                    <th>All Amount</th>
+                                    <th>Continuity</th>
+                                    <th>Room time</th>
+                                </tr>
+                                </thead>
+                               <tbody>
+                               {% for group in groups %}
+                                <tr class="{% if group.start and group.complete %} bg-success {% elif group.start %} bg-primary {% endif %}">
+                                    <td><a class="text-orange" href="{% url 'group_detail' pk=group.id %}">{{group.name}}</a></td>
+                                    <td>{{group.course}}</td>
+                                    <td>{{group.room}}</td>
+                                    <td>{{group.teacher}}</td>
+                                    <td>{{group.amount}}</td>
+                                    <td>{{group.all_amount}}</td>
+                                    <td>{{group.continuity}} month</td>
+                                    <td>{{group.room_time}}</td>
+                                </tr>
+                               {% endfor %}
+                               </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

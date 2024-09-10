@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="content-page">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 col-lg-12">
+
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <div class="header-title">
+                            <h4 class="card-title">Pay for "{{student}}" for {{month}} - month.  Payment: {{payment}}</h4>
+                        </div>
+                        <div class="header-action">
+
+                        </div>
+                    </div>
+                    <div class="card-body">
+
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+<!--                            <div class="form-group">-->
+<!--                                <label for="email">Email address:</label>-->
+<!--                                <input type="email" class="form-control" id="email1">-->
+<!--                            </div>-->
+<!--                            <div class="form-group">-->
+<!--                                <label for="pwd">Password:</label>-->
+<!--                                <input type="password" class="form-control" id="pwd">-->
+<!--                            </div>-->
+<!--                            <div class="checkbox mb-3">-->
+<!--                                <label><input type="checkbox"> Remember me</label>-->
+<!--                            </div>-->
+                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                            <a href="{% url 'payments' %}" class="btn bg-danger">Cancel</a>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -26,8 +26,8 @@ SECRET_KEY = 'django-insecure-#7m91*qfbfp5u@u80q+buf06a&^++%2880v+71enap1%kn@9*2
 DEBUG = True
 
 # ALLOWED_HOSTS = ['https://web-production-aa6bf.up.railway.app/', 'localhost:8000', "*"]
-ALLOWED_HOSTS = ['web-production-aa6bf.up.railway.app','localhost', '127.0.0.1', 'bagdad-it-academy.uz']
-CSRF_TRUSTED_ORIGINS = ['https://web-production-aa6bf.up.railway.app','web-production-aa6bf.up.railway.app']
+ALLOWED_HOSTS = ['crmbagdad.up.railway.app','localhost', '127.0.0.1', 'bagdad-it-academy.uz']
+CSRF_TRUSTED_ORIGINS = ['https://crmbagdad.up.railway.app','crmbagdad.up.railway.app']
 # Application definition
 
 INSTALLED_APPS = [

@@ -151,7 +151,7 @@ def generate_certificate(request, pk):
 
         # Сохраняем изображение в файл
 
-        img1.save(f"static/certificates/{student_name}{student.id}{course.name}.png", format="PNG")
+        img1.save(f"certificates/{student_name}{student.id}{course.name}.png", format="PNG")
         try:
             student_ = StudentCertificate.objects.get(student=student)
         except:
@@ -171,7 +171,7 @@ def generate_certificate(request, pk):
         buffer.seek(0)
         # Предположим, что buffer - это объект StringIO, содержащий PNG-данные
         # Создаем объект PIL Image из данных StringIO
-        img1 = Image.open(f"static/assets/images/certificates/{student.name}{student.id}{course.name}.png")
+        img1 = Image.open(f"certificates/{student.name}{student.id}{course.name}.png")
         img1 = Image.open(buffer)
         student_name = student.name.split()
         if len(student_name) > 1:

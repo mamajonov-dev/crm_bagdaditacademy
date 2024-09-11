@@ -134,9 +134,9 @@ def generate_certificate(request, pk):
             student_name = f"{student_name[0]}"
         img = Image.open('static/assets/images/certificate.png')
         d = ImageDraw.Draw(img)
-        font = ImageFont.truetype("Roboto-Regular.ttf", 210)
-        idfont = ImageFont.truetype("Roboto-Regular.ttf", 110)
-        coursefont = ImageFont.truetype("Roboto-Regular.ttf", 110)
+        font = ImageFont.truetype("static/Roboto-Regular.ttf", 210)
+        idfont = ImageFont.truetype("static/Roboto-Regular.ttf", 110)
+        coursefont = ImageFont.truetype("static/Roboto-Regular.ttf", 110)
         d.text((150, 1000), f"{student_name}", fill=(0, 0, 0), font=font)
         d.text((2550, 2000), f"{year}-{student.id}", fill=(0, 0, 0), font=idfont)
         d.text((150, 1450), f'"{course.name}" course', fill=(110, 170, 36), font=idfont)

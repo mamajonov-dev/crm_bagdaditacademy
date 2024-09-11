@@ -25,9 +25,9 @@ SECRET_KEY = 'django-insecure-#7m91*qfbfp5u@u80q+buf06a&^++%2880v+71enap1%kn@9*2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1',]
-# ALLOWED_HOSTS = ['crmbagdad.up.railway.app','localhost', '127.0.0.1', 'bagdad-it-academy.uz']
-# CSRF_TRUSTED_ORIGINS = ['https://crmbagdad.up.railway.app','crmbagdad.up.railway.app']
+# ALLOWED_HOSTS = ['localhost', '127.0.0.1',]
+ALLOWED_HOSTS = ['crmbagdad.up.railway.app','localhost', '127.0.0.1', 'bagdad-it-academy.uz']
+CSRF_TRUSTED_ORIGINS = ['https://crmbagdad.up.railway.app','crmbagdad.up.railway.app']
 # Application definition
 
 INSTALLED_APPS = [

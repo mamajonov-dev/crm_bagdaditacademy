@@ -160,7 +160,7 @@ def generate_certificate(request, pk):
             StudentCertificate.objects.create(
                 name=f'{student.name}{student.id}{course.name}',
                 student=student,
-                image=f"static/certificates/{student.name}{student.id}{course.name}.png",
+                image=f"certificates/{student.name}{student.id}{course.name}.png",
                 course=student.course
             )
         # Отправляем изображение в ответе
@@ -171,7 +171,7 @@ def generate_certificate(request, pk):
         buffer.seek(0)
         # Предположим, что buffer - это объект StringIO, содержащий PNG-данные
         # Создаем объект PIL Image из данных StringIO
-        img1 = Image.open(f"static/certificates/{student.name}{student.id}{course.name}.png")
+        img1 = Image.open(f"static/assets/images/certificates/{student.name}{student.id}{course.name}.png")
         img1 = Image.open(buffer)
         student_name = student.name.split()
         if len(student_name) > 1:

@@ -4,4 +4,4 @@ from .models import *
 
 @admin.register(Expenses)
 class ExpensesAdmin(admin.ModelAdmin):
-    list_display = ('salary', 'month')
+    list_display = ['month']

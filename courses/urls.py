@@ -14,5 +14,4 @@ urlpatterns = [
     path('group-finish/<str:pk>/', end_group, name='end_group'),
     path('group-complete/<str:pk>/', complete_group, name='complete_group'),
     path('add-student-group/<str:student_pk>/<str:group_pk>/', add_student_to_group, name='add_student_to_group'),
-
 ]

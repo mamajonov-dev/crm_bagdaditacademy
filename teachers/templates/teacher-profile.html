@@ -159,15 +159,52 @@
                 </div>
             </div>
             <div class="col-lg-8">
-                <div class="card card-block">
+                <div class="card card-block bg-secondary">
                     <div class="card-header pb-0">
                         <div class="header-title">
-                            <h4 class="card-title">Groups</h4>
+                            <h4 class="card-title">Jarayondagi Guruhlar</h4>
                         </div>
                     </div>
                     <div class="card-body">
                         <ul class="list-inline p-0 m-0">
-                            {% for teacher_group in teacher.group_set.all %}
+                            {% for teacher_group in studying_groups %}
+                            <li class="d-flex align-items-center mb-3">
+                                <div class="profile-icon iq-icon-box rounded-small bg-success-light svg-danger text-center">
+                                    <svg width="24" height="20" viewBox="0 0 24 20" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0)">
+                                            <path
+                                                    d="M23.3379 5.745L12.8777 2.53125C12.3077 2.35612 11.6927 2.35612 11.1231 2.53125L0.662429 5.745C-0.220321 6.01612 -0.220321 7.18349 0.662429 7.45462L2.48605 8.01487C2.08593 8.50949 1.83993 9.11287 1.81555 9.77362C1.45443 9.98062 1.20018 10.3541 1.20018 10.8C1.20018 11.2042 1.41318 11.5444 1.71993 11.7619L0.762554 16.0699C0.679304 16.4445 0.964304 16.8 1.34793 16.8H3.45205C3.83605 16.8 4.12105 16.4445 4.0378 16.0699L3.08043 11.7619C3.38718 11.5444 3.60018 11.2042 3.60018 10.8C3.60018 10.3661 3.35755 10.0031 3.01293 9.79237C3.04143 9.22912 3.32943 8.73112 3.7888 8.41537L11.1227 10.6687C11.4624 10.773 12.1142 10.9031 12.8773 10.6687L23.3379 7.45499C24.2211 7.1835 24.2211 6.0165 23.3379 5.745V5.745ZM13.2298 11.8159C12.1599 12.1444 11.2483 11.9629 10.7702 11.8159L5.33193 10.1452L4.80018 14.4C4.80018 15.7256 8.02368 16.8 12.0002 16.8C15.9767 16.8 19.2002 15.7256 19.2002 14.4L18.6684 10.1449L13.2298 11.8159V11.8159Z"
+                                                    fill="currentColor"/>
+                                        </g>
+                                        <defs>
+                                            <clipPath>
+                                                <rect width="24" height="19.2" fill="white"/>
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </div>
+                                <div class="ml-3">
+                                    <h5>
+                                        <a href="{% url 'group_detail' pk=teacher_group.id %}">{{teacher_group.name}}</a>
+                                    </h5>
+                                    <p class="mb-0">{{teacher_group.course}}</p>
+                                </div>
+                            </li>
+                            {% endfor %}
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="card card-block bg-warning">
+                    <div class="card-header pb-0">
+                        <div class="header-title">
+                            <h4 class="card-title">Tugatilgan Guruhlar</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-inline p-0 m-0">
+                            {% for teacher_group in finished_groups %}
                             <li class="d-flex align-items-center mb-3">
                                 <div class="profile-icon iq-icon-box rounded-small bg-danger-light svg-danger text-center">
                                     <svg width="24" height="20" viewBox="0 0 24 20" fill="none"
@@ -196,17 +233,58 @@
                         </ul>
                     </div>
                 </div>
+
+
                 <div class="card card-block">
                     <div class="card-header pb-0">
                         <div class="header-title">
-                            <h4 class="card-title">Students ({{all_students}})</h4>
+                            <h4 class="card-title">O'qiyotgan o'quvchilar ({{studying_students.count}})</h4>
                         </div>
                     </div>
                     <div class="card-body">
                         <ul class="list-inline p-0 m-0">
-                            {% for teacher_group in teacher.group_set.all %}
-                            {% for student in teacher_group.student_set.all %}
 
+                            {% for student in studying_students %}
+                            <li class="d-flex align-items-center mb-3">
+                                <div class="profile-icon iq-icon-box rounded-small bg-success-light svg-danger text-center">
+                                    <svg width="24" height="20" viewBox="0 0 24 20" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0)">
+                                            <path
+                                                    d="M23.3379 5.745L12.8777 2.53125C12.3077 2.35612 11.6927 2.35612 11.1231 2.53125L0.662429 5.745C-0.220321 6.01612 -0.220321 7.18349 0.662429 7.45462L2.48605 8.01487C2.08593 8.50949 1.83993 9.11287 1.81555 9.77362C1.45443 9.98062 1.20018 10.3541 1.20018 10.8C1.20018 11.2042 1.41318 11.5444 1.71993 11.7619L0.762554 16.0699C0.679304 16.4445 0.964304 16.8 1.34793 16.8H3.45205C3.83605 16.8 4.12105 16.4445 4.0378 16.0699L3.08043 11.7619C3.38718 11.5444 3.60018 11.2042 3.60018 10.8C3.60018 10.3661 3.35755 10.0031 3.01293 9.79237C3.04143 9.22912 3.32943 8.73112 3.7888 8.41537L11.1227 10.6687C11.4624 10.773 12.1142 10.9031 12.8773 10.6687L23.3379 7.45499C24.2211 7.1835 24.2211 6.0165 23.3379 5.745V5.745ZM13.2298 11.8159C12.1599 12.1444 11.2483 11.9629 10.7702 11.8159L5.33193 10.1452L4.80018 14.4C4.80018 15.7256 8.02368 16.8 12.0002 16.8C15.9767 16.8 19.2002 15.7256 19.2002 14.4L18.6684 10.1449L13.2298 11.8159V11.8159Z"
+                                                    fill="currentColor"/>
+                                        </g>
+                                        <defs>
+                                            <clipPath>
+                                                <rect width="24" height="19.2" fill="white"/>
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </div>
+                                <div class="ml-3">
+                                    <h5><a href="{% url 'student_profile' pk=student.id %}">{{student.name}}</a></h5>
+                                    <p class="mb-0">{{student.group.name}}</p>
+                                </div>
+                            </li>
+                            {% endfor %}
+
+                            <li class="col-sm-4 col-lg-12">
+
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="card card-block bg-warning">
+                    <div class="card-header pb-0">
+                        <div class="header-title">
+                            <h4 class="card-title">Bitirgan o'quvchilar ({{finished_students.count}})</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-inline p-0 m-0">
+
+                            {% for student in finished_students %}
                             <li class="d-flex align-items-center mb-3">
                                 <div class="profile-icon iq-icon-box rounded-small bg-danger-light svg-danger text-center">
                                     <svg width="24" height="20" viewBox="0 0 24 20" fill="none"
@@ -225,11 +303,11 @@
                                 </div>
                                 <div class="ml-3">
                                     <h5><a href="{% url 'student_profile' pk=student.id %}">{{student.name}}</a></h5>
-                                    <p class="mb-0">{{teacher_group.name}}</p>
+                                    <p class="mb-0">{{student.group.name}}</p>
                                 </div>
                             </li>
                             {% endfor %}
-                            {% endfor %}
+
                             <li class="col-sm-4 col-lg-12">
 
                             </li>
@@ -237,6 +315,9 @@
                         </ul>
                     </div>
                 </div>
+
+
+
             </div>
         </div>
     </div>

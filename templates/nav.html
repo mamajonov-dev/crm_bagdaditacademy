@@ -35,8 +35,10 @@
                 <li class="px-3 pt-3 pb-2">
                     <span class="text-uppercase small font-weight-bold">Pages</span>
                 </li>
+
+                {% if not user.is_staff %}
                 <li class=" sidebar-layout">
-                    <a href="/" class="svg-icon">
+                    <a href="{% url 'teacher_profile' pk=user.teacher.id %}" class="svg-icon">
                         <i class="">
                             <svg class="svg-icon" id="iq-user-1-1" xmlns="http://www.w3.org/2000/svg"
                                  fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -46,6 +48,7 @@
                         </i><span class="ml-2">User Profile</span>
                     </a>
                 </li>
+                {% else %}
                 <li class=" sidebar-layout">
                     <a href="{% url 'courses' %}" class="svg-icon">
                         <i class="">
@@ -101,7 +104,7 @@
                         </i><span class="ml-2">Payments</span>
                     </a>
                 </li>
-
+                {% endif %}
             </ul>
         </nav>
         <div class="pt-5 pb-5"></div>

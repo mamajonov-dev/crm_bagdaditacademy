@@ -17,7 +17,6 @@ def dashboard(request):
     expenses = Expenses.objects.all()
     new_students = Student.objects.filter(group=None)
     all_students = Student.objects.all()
-
     expenses_now = None
     now = date.today().month
     for date_e in expenses:
@@ -25,19 +24,25 @@ def dashboard(request):
         print(a, '============================')
         if a == now:
             expenses_now = date_e
-    if expenses_now:
-        oylik = expenses_now.salary() / 2
-        daromad = expenses_now.salary() - expenses_now.rent - expenses_now.others - expenses_now.energy - oylik
-    else:
-        oylik = None
-        daromad = None
+
+
+
+
+    # if expenses_now:
+    #     # oylik = expenses_now.salary() / 2
+    #     # daromad = expenses_now.salary() - expenses_now.rent - expenses_now.others - expenses_now.energy - oylik
+    # else:
+    #     oylik = None
+    #     daromad = None
 
     context = {
         'courses': len(courses),
         'groups': len(groups),
         'teachers': len(teachers),
         'new_students': new_students,
-        'all_students': len(all_students)
+        'count_new_students': len(new_students),
+        'all_students': all_students,
+        'count_all_students': len(all_students),
     }
 
     return render(request, 'index.html', context)
@@ -52,30 +57,40 @@ def admin_dashboard(request):
         expenses = Expenses.objects.all()
         new_students = Student.objects.filter(group=None)
         all_students = Student.objects.all()
+        # expenses_now = None
+        # now = date.today().month
+        # for date_e in expenses:
+        #     a = int(str(date_e.month).split('-')[1])
+        #     if a == now:
+        #         expenses_now = date_e
+        # if expenses_now:
+        #     oylik = expenses_now.salary() / 2
+        #     # daromad = expenses_now.salary() - expenses_now.rent - expenses_now.others - expenses_now.energy - oylik
+        # else:
+        #     oylik = None
+        #     daromad = None
+
         expenses_now = None
         now = date.today().month
+
         for date_e in expenses:
             a = int(str(date_e.month).split('-')[1])
-            print(a, '============================')
             if a == now:
                 expenses_now = date_e
-        if expenses_now:
-            oylik = expenses_now.salary() / 2
-            daromad = expenses_now.salary() - expenses_now.rent - expenses_now.others - expenses_now.energy - oylik
-        else:
-            oylik = None
-            daromad = None
+        print(expenses_now, '------------------')
+        umumiy_summa = 0
+        # for chiqim in chiqimlar:
+        #     umumiy_summa += chiqim.summa
+
 
         context = {
-            "expenses_now": expenses_now,
-            'oylik': oylik,
-            'daromad': daromad,
+            "expenses_now": umumiy_summa,
+            # 'oylik': oylik,
+            # 'daromad': daromad,
             'teachers': teachers,
             'all_students': len(all_students)
-
         }
         return render(request, 'admin-profile.html', context)
-
     else:
         return redirect('dashboard')
 
@@ -105,11 +120,10 @@ def login_user(request):
         user = authenticate(username=username, password=password)
         if user:
             login(request, user)
-            if user.is_staff:
-                return redirect('dashboard')
-            else:
-                return redirect('login')
-
+            # if user.is_staff:
+            return redirect('dashboard')
+            # else:
+            #     return redirect('teacher_profile', pk=user.teacher.id)
     return render(request, 'auth-login.html')
 
 

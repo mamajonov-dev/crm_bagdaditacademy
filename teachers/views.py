@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import *
 from .forms import *
+from students.models import *
 
 @login_required(login_url='login')
 def all_teachers(request):
@@ -16,6 +17,10 @@ def all_teachers(request):
 def teacher_profile(request, pk):
     teacher = Teacher.objects.get(id=pk)
     groups = teacher.group_set.all()
+    finished_groups = teacher.group_set.filter(complete=True)
+    studying_groups = teacher.group_set.filter(complete=False)
+    finished_students = Student.objects.filter(group__teacher=teacher, finish=True)
+    studying_students = Student.objects.filter(group__teacher=teacher, finish=False)
     all_students = 0
     summa = 0
     for group in groups:
@@ -25,9 +30,15 @@ def teacher_profile(request, pk):
     context = {
         'teacher': teacher,
         'summa': int(summa / 100 * 50),
-        'all_students': all_students
+        'all_students': all_students,
+        'finished_students':finished_students,
+        'studying_students': studying_students,
+        'finished_groups':finished_groups,
+        'studying_groups':studying_groups
     }
     return render(request, 'teacher-profile.html', context)
+
+
 
 @login_required(login_url='login')
 def add_teacher(request):

@@ -196,7 +196,6 @@
                     <thead>
                     <tr>
                         <th>Name</th>
-
                         <th>Group</th>
                         <th>Students</th>
                         <th>All summa</th>
@@ -208,11 +207,11 @@
                     {% for teacher in teachers %}
                     <tr>
                         <td><a href="{% url 'teacher_profile' pk=teacher.id %}">{{teacher.name}}</a></td>
-
-                        {% for group in teacher.group_set.all %}
-                        <td><a href="{% url 'group-detail' pk=group.id %}">{{group.name}}</a></td>
-                        {% endfor %}
-
+                        <td>
+                            {% for group in teacher.group_set.all %}
+                            <a href="{% url 'group-detail' pk=group.id %}">{{group.name}}</a><br>
+                            {% endfor %}
+                        </td>
                         <td>{{teacher.teacher_students}}</td>
                         <td>{{teacher.all_summa}}</td>
                         <td>{{teacher.oylik}}</td>
@@ -224,7 +223,77 @@
                 </table>
             </div>
         </div>
+        {% if user.username == 'mamajonov.dev' %}
+        <div class="col-lg-3 col-md-5 ml-4  ">
+            <div class="card card-block card-stretch card-height">
+                <div class="card-header card-header-border d-flex justify-content-between bg-danger">
+                    <div class="header-title ">
+                        <h4 class="card-title bg-danger">{{month}}</h4>
+                    </div>
+                </div>
+                <div class="card-body-list">
+                    <ul class="list-style-3 mb-0">
+                        <li class="p-3 list-item d-flex justify-content-start align-items-center">
 
+                            <div class="list-style-detail ml-3 mr-2">
+                                <p class="mb-0">Umumiy tushum</p>
+                            </div>
+                            <div class="list-style-action d-flex justify-content-end ml-auto">
+                                <h6 class="font-weight-bold">{{expenses_now.salary}}</h6>
+                            </div>
+                        </li>
+                        <li class="p-3 list-item d-flex justify-content-start align-items-center">
+
+                            <div class="list-style-detail ml-3 mr-2">
+                                <p class="mb-0">Arenda</p>
+                            </div>
+                            <div class="list-style-action d-flex justify-content-end ml-auto">
+                                <h6 class="font-weight-bold">{{expenses_now.rent}}</h6>
+                            </div>
+                        </li>
+                        <li class="p-3 list-item d-flex justify-content-start align-items-center">
+
+                            <div class="list-style-detail ml-3 mr-2">
+                                <p class="mb-0">Energy</p>
+                            </div>
+                            <div class="list-style-action d-flex justify-content-end ml-auto">
+                                <h6 class="font-weight-bold">{{expenses_now.energy}}</h6>
+                            </div>
+                        </li>
+                        <li class="p-3 list-item d-flex justify-content-start align-items-center">
+
+                            <div class="list-style-detail ml-3 mr-2">
+                                <p class="mb-0">Others</p>
+                            </div>
+                            <div class="list-style-action d-flex justify-content-end ml-auto">
+                                <h6 class="font-weight-bold">{{expenses_now.others}}</h6>
+                            </div>
+                        </li>
+                        <li class="p-3 list-item d-flex justify-content-start align-items-center">
+
+                            <div class="list-style-detail ml-3 mr-2">
+                                <p class="mb-0">Oylik</p>
+                            </div>
+                            <div class="list-style-action d-flex justify-content-end ml-auto">
+                                <h6 class="font-weight-bold">{{oylik}}</h6>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="list-style-3 mb-0 bg-success">
+                        <li class="p-3 list-item d-flex justify-content-start align-items-center">
+
+                            <div class="list-style-detail ml-3 mr-2">
+                                <p class="mb-0" style="font-size: 20px">Daromad</p>
+                            </div>
+                            <div class="list-style-action d-flex justify-content-end ml-auto">
+                                <h6 class="font-weight-bold" style="font-size: 30px">{{daromad}}</h6>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endif %}
     </div>
 </div>
 {% endblock content %}

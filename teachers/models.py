@@ -4,7 +4,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Teacher(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
     name = models.CharField(max_length=200, blank=True, null=True)
     profession = models.CharField(max_length=200, blank=True, null=True)
     image = models.ImageField(upload_to='teachers/', blank=True, null=True)

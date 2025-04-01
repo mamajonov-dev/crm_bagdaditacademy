@@ -158,7 +158,7 @@ def generate_certificate(request, pk):
 
 
         # 6️⃣ QR kodni sertifikatga joylashtirish
-        qr_position = (img.size[0] - qr_size - 100, 100)
+        qr_position = (img.size[0] - qr_size - 700, 200)
         img.paste(qr_img, qr_position)
 
         # Сохраняем изображение в объект BytesIO

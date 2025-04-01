@@ -1,5 +1,5 @@
 import datetime
-
+import qrcode
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
@@ -121,7 +121,7 @@ def pay_for_student(request, pk):
     return render(request, 'form-payment.html', context)
 
 
-@login_required(login_url='login')
+
 def generate_certificate(request, pk):
     student = Student.objects.get(id=pk)
     course = student.course
@@ -140,6 +140,26 @@ def generate_certificate(request, pk):
         d.text((150, 1000), f"{student_name}", fill=(0, 0, 0), font=font)
         d.text((2550, 2000), f"{year}-{student.id}", fill=(0, 0, 0), font=idfont)
         d.text((150, 1450), f'"{course.name}" course', fill=(110, 170, 36), font=idfont)
+
+
+
+        # 1️⃣ QR kod yaratish
+        qr = qrcode.QRCode(box_size=20, border=0)
+        qr.add_data(f"https://crmbagdaditacademy.up.railway.app/students/student-certificate/{student.id}/")
+        qr.make(fit=True)
+
+        qr_img = qr.make_image(fill="black", back_color="white")
+
+        # 2️⃣ Fon rasmini ochish
+
+        # 3️⃣ QR kod o‘lchamini moslashtirish
+        qr_size = 300  # QR kod rasmning 1/3 qismiga mos keladi
+        qr_img = qr_img.resize((qr_size, qr_size))
+
+
+        # 6️⃣ QR kodni sertifikatga joylashtirish
+        qr_position = (img.size[0] - qr_size - 100, 100)
+        img.paste(qr_img, qr_position)
 
         # Сохраняем изображение в объект BytesIO
         buffer = io.BytesIO()
@@ -179,4 +199,7 @@ def generate_certificate(request, pk):
         else:
             student_name = f"{student_name[0]}"
         # Сохраняем изображение в файл
+
+
+
         return HttpResponse(buffer.getvalue(), content_type="image/png")

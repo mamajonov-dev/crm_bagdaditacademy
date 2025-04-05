@@ -11,14 +11,14 @@ class Student(models.Model):
         ('14:00 - 16:00', '14:00 - 16:00'),
         ('16:00 - 18:00', '16:00 - 18:00'),
     )
-    name = models.CharField(max_length=200, blank=True, null=True)
-    course = models.ForeignKey(Course, on_delete=models.SET_NULL, blank=True, null=True)
+    name = models.CharField(max_length=200, blank=True, null=True, verbose_name='Ismi familiya *')
+    course = models.ForeignKey(Course, on_delete=models.SET_NULL, blank=True, null=True, verbose_name='Kurs *')
     group = models.ForeignKey(Group, on_delete=models.SET_NULL, blank=True, null=True)
-    student_time = models.CharField(max_length=200, choices=CHOISES, blank=True, null=True)
-
+    student_time = models.CharField(max_length=200, choices=CHOISES, blank=True, null=True, verbose_name='Vaqt *')
+    passport = models.ImageField(upload_to='passports/', blank=True, null=True, verbose_name='Passpost/metrka')
     address = models.CharField(max_length=200, blank=True, null=True)
-    phone = models.IntegerField(default=998, blank=True, null=True)
-    birthday = models.DateField(blank=True, null=True)
+    phone = models.IntegerField(default=998, blank=True, null=True, verbose_name='Telefon *')
+    birthday = models.DateField(blank=True, null=True, verbose_name='Birthday: 0000-00-00')
 
     finish = models.BooleanField(default=False, blank=True, null=True)
     # sertifcateid = models.IntegerField(default=True, auto_created=True, editable=False, blank=True, null=True)

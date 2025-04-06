@@ -75,7 +75,7 @@ def editStudent(request, pk):
 
 @login_required(login_url='login')
 def students_payments(request):
-    payments = Payment.objects.filter(complete=False)
+    payments = Payment.objects.all().order_by('-complete')
     context = {
         'payments': payments
     }

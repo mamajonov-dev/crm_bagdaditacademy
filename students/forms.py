@@ -5,7 +5,7 @@ from .models import *
 class SudentForm(forms.ModelForm):
     class Meta:
         model = Student
-        fields = ['name', 'course', 'student_time', 'address', 'birthday', 'phone']
+        fields = ['name', 'course', 'student_time', 'address', 'birthday', 'phone', 'passport']
 
     def __init__(self, *args, **kwargs):
         super(SudentForm, self).__init__(*args, **kwargs)

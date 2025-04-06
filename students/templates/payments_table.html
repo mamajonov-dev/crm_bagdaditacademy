@@ -34,7 +34,7 @@
                                 </thead>
                                <tbody>
                                {% for payment in payments %}
-                                <tr class="bg-danger">
+                                <tr class="{% if payment.complete == False %} bg-danger {% elif payment.complete == True %} bg-success {% endif %}">
                                     <td>{{payment.student.name}}</td>
 
                                     <td>{{payment.group}}</td>
